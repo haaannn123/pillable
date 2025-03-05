@@ -1,0 +1,6 @@
+[submodule "native"]
+	path = native
+	url = git@github.com:Brennan-Flood/pillable-native.git
+[submodule "web"]
+	path = web
+	url = git@github.com:Brennan-Flood/pillable-web.git
