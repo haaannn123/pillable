@@ -4,3 +4,6 @@
 [submodule "web"]
 	path = web
 	url = git@github.com:Brennan-Flood/pillable-web.git
+[submodule "db"]
+	path = db
+	url = git@github.com:Brennan-Flood/pillable-db.git
