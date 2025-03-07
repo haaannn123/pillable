@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+    postgres:
+        image: postgres:latest
+        container_name: postgres
+        restart: always
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: test_db
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+            - ./db/init-scripts:/docker-entrypoint-initdb.d
+    rust-api:
+        build: ./api
+        environment:
+            DATABASE_URL: postgres://postgres:postgres@postgres:5432/test_db
+        container_name: pillable_api
+        restart: always
+        ports:
+            - "3000:3000"
+        env_file:
+        - ./api/.env 
+
+volumes:
+    postgres_data:
