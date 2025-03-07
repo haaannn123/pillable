@@ -7,3 +7,6 @@
 [submodule "db"]
 	path = db
 	url = git@github.com:Brennan-Flood/pillable-db.git
+[submodule "api"]
+	path = api
+	url = git@github.com:Brennan-Flood/pillable-api.git
