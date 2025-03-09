@@ -7,7 +7,7 @@ git submodule add https://github.com/username/child-repo.git path/to/child-repo
 CLONING MONOREPO + SUBMODULES
 
 ```
-git clone --recurse-submodules https://github.com/yourusername/your-monorepo.git
+git clone --recurse-submodules https://github.com/haaannn123/pillable.git
 ```
 
 OR FOR PULLING CHANGES
