@@ -10,10 +10,22 @@ services:
         environment:
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: postgres
-            POSTGRES_DB: test_db
         volumes:
             - postgres_data:/var/lib/postgresql/data
             - ./db/init-scripts:/docker-entrypoint-initdb.d
+        command: >
+            sh -c "
+                docker-entrypoint.sh postgres & 
+                sleep 5 && 
+                until psql -U postgres -c 'SELECT 1' > /dev/null 2>&1; do sleep 1; done &&
+                echo 'PostgreSQL is ready! Running init scripts...' &&
+                psql -U postgres -c \"CREATE DATABASE test_db WITH OWNER postgres;\" &&
+                psql -U postgres -d test_db -f /docker-entrypoint-initdb.d/init_schema.sql &&
+                psql -U postgres -d test_db -f /docker-entrypoint-initdb.d/init_data.sql &&
+                echo 'Init scripts executed successfully!'
+            "
+
+
     rust-api:
         build: ./api
         environment:
